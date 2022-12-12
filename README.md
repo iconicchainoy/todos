@@ -62,3 +62,46 @@ Write tests for the UI code.
 ### When you are done
 
 Use git to commit your changes to their own branch and create a pull request.
+
+## Testing
+
+Pre-commit is installed and configured, so before commits the Unittests & Selenium tests will be executed.
+
+First, start a local server:
+
+```sh
+python manage.py runserver 8000
+```
+
+> **_NOTE:_**  Running a local server on port 8000 is needed for selenium/cypress tests.
+
+### Unittests (Django REST Framework)
+
+To execute tests, run:
+
+```sh
+python manage.py test tests/unittests
+```
+
+> **_NOTE:_** If we don't add "tests/unittests" it will call Selenium tests as well.
+
+### Selenium tests
+
+To execute tests, run:
+
+```sh
+python manage.py test tests/selenium
+```
+
+### CyPress tests
+
+To open CyPress, run:
+
+```sh
+yarn run cypress open
+```
+
+Selecte E2E testing and select the **spec.cy.js**.
+Tests will be executed automatically.
+
+> **_NOTE:_** Current script is working with the created database and is configured to the default state of it (4 categories).
