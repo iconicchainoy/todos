@@ -27,4 +27,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        python manage.py test -v 2
+        coverage run --source='.' manage.py test -v 2
+    - name: Measure Coverage
+      run: |
+        coverage report --fail-under 75
