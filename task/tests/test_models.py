@@ -11,7 +11,7 @@ class TaskCategoryTest(TestCase):
         name = "TC_name"
         tc = TaskCategory.objects.create(name=name)
 
-        self.assertEquals(str(tc), name)
+        self.assertEqual(str(tc), name)
         tc.full_clean()
 
     def test_task_category_creation_failure(self):
@@ -24,7 +24,7 @@ class TaskCategoryTest(TestCase):
         name = "A" * 1000
         tc = TaskCategory.objects.create(name=name)
 
-        self.assertEquals(len(str(tc)), 1000)
+        self.assertEqual(len(str(tc)), 1000)
         with self.assertRaises(ValidationError) as e:
             tc.full_clean()
         self.assertTrue("255" in e.exception.messages[0], e.exception.messages)
@@ -40,9 +40,9 @@ class TaskTest(TestCase):
         tc = TaskCategory.objects.create(name="My TODOs")
         t = Task.objects.create(category=tc, title=title, description=descr, deadline=d)
 
-        self.assertEquals(str(t), title)
-        self.assertEquals(t.description, descr)
-        self.assertEquals(t.deadline, d)
+        self.assertEqual(str(t), title)
+        self.assertEqual(t.description, descr)
+        self.assertEqual(t.deadline, d)
         self.assertIsInstance(t.deadline, date)
         t.full_clean()
 
@@ -54,9 +54,9 @@ class TaskTest(TestCase):
         tc = TaskCategory.objects.create(name="My TODOs")
         t = Task.objects.create(category=tc, title=title, description=descr, deadline=d)
 
-        self.assertEquals(str(t), title)
-        self.assertEquals(t.description, descr)
-        self.assertEquals(t.deadline, d)
+        self.assertEqual(str(t), title)
+        self.assertEqual(t.description, descr)
+        self.assertEqual(t.deadline, d)
         self.assertIsInstance(t.deadline, date)
         t.full_clean()
 
@@ -67,8 +67,8 @@ class TaskTest(TestCase):
         tc = TaskCategory.objects.create(name="My TODOs")
         t = Task.objects.create(category=tc, description=descr, deadline=d)
 
-        self.assertEquals(t.description, descr)
-        self.assertEquals(t.deadline, d)
+        self.assertEqual(t.description, descr)
+        self.assertEqual(t.deadline, d)
         self.assertIsInstance(t.deadline, date)
         t.full_clean()
 
@@ -124,9 +124,9 @@ class TaskTest(TestCase):
         tc = TaskCategory.objects.create(name="My TODOs")
         t = Task.objects.create(category=tc, title=title, description=descr, deadline=d)
 
-        self.assertEquals(str(t), title)
-        self.assertEquals(t.description, descr)
-        self.assertEquals(t.deadline, d)
+        self.assertEqual(str(t), title)
+        self.assertEqual(t.description, descr)
+        self.assertEqual(t.deadline, d)
         self.assertIsInstance(t.deadline, date)
         with self.assertRaises(ValidationError) as e:
             t.full_clean()
@@ -146,5 +146,5 @@ class TaskTest(TestCase):
         t.full_clean()
 
         number_of_deleted_object, numbers_by_type = tc.delete()
-        self.assertEquals(number_of_deleted_object, 3)
-        self.assertEquals(numbers_by_type['task.Task'], 2)
+        self.assertEqual(number_of_deleted_object, 3)
+        self.assertEqual(numbers_by_type['task.Task'], 2)
