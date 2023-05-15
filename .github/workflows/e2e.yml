@@ -27,4 +27,4 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        python manage.py test e2e.selenium_check -v 3
+        python manage.py test e2e.test_sanity_check -v 3

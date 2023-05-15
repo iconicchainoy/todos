@@ -29,7 +29,7 @@ class SanityTest(StaticLiveServerTestCase):
 
     def test_page_available(self):
         self.driver.get(self.live_server_url)
-        self.assertTrue("TODOs" in self.driver.title, self.driver.title)
+        self.assertTrue("TODOs" in self.driver.title, self.driver.page_source)
         dropdown = self.driver.find_element(By.CLASS_NAME, "dropdown")
         self.assertIsNotNone(dropdown)
         default_text = dropdown.find_element(By.CLASS_NAME, "default").get_attribute('innerHTML')
