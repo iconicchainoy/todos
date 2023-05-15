@@ -35,6 +35,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+        cache-dependency-path: ./yarn.lock
     - name: Frontend setup
       run: |
         yarn
